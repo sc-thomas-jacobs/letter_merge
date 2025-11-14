@@ -1,0 +1,25 @@
+ON NonOrderInvoice_Submit(invoice)
+
+    SET supplierId = invoice.supplierId
+    SET documentNumber = invoice.supplierDocumentNumber
+
+    // Retrieve all invoices for this supplier
+    SET invoiceList = GetAllInvoicesForSupplier(supplierId)
+
+    // Loop through each invoice to check for duplicates
+    FOR each existingInvoice IN invoiceList
+
+        IF existingInvoice.supplierDocumentNumber == documentNumber THEN
+            IF existingInvoice.id != invoice.id THEN
+                // Duplicate found, block submission
+                RAISE ERROR "Duplicate supplier document number found. Please use a unique AP invoice number."
+                EXIT
+            ENDIF
+        ENDIF
+
+    ENDFOR
+
+    // If no duplicates found, allow submission
+    CONTINUE submission
+
+END

@@ -93,7 +93,7 @@ class MailMergeUI:
 
         # Run button
         run_btn = tk.Button(frame, text="Run Mail Merge", command=self.run_mail_merge,
-                            bg="#1B4F72", fg="white", font=("Segoe UI", 10, "bold"),
+                            bg="#000000", fg="white", font=("Segoe UI", 10, "bold"),
                             relief="flat", padx=10)
         run_btn.grid(row=4, column=0, pady=30)
 
