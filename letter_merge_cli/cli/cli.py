@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from . import core
+from letter_merge import core
 
 def main():
     parser = argparse.ArgumentParser(prog="letter-merge")
